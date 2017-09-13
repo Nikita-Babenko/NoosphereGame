@@ -11,6 +11,7 @@ server.on('request',(request,response)=>{
     let filePath = '/projects/NoosphereNodeJS/kub/index.html';
     let readStream = fs.createReadStream(filePath);
 
+
     readStream.pipe(response);
 
 //response.write(JSON.stringify(res));
