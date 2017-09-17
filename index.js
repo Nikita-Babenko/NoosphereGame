@@ -95,6 +95,31 @@ server.on('request',(request,response)=> {
 });
 
 
+
+function getTop10(done) {
+
+    fs.readFile('/pub/data.json', (err, result) => {
+        if (err) {
+            return done(err);
+        }
+        let data = JSON.parse(result);
+        data = sortAndProcess(data); // sort, find, etc...
+        done(null,  data);
+    });
+
+}
+
+//example of use
+
+getTop10((err, top10data) => {
+    if (err) {
+        console.log('Error happened!');
+    } else {
+        console.log('Top 10 results:', top10data);
+    }
+});
+
+
     readStream.pipe(response);
 
 
