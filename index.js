@@ -95,5 +95,6 @@ server.on('request',(request,response)=> {
 );
     server.listen(8080);
 
+    
 //почитать про сокеты
 //про метод пост в джиквери библиотеке
