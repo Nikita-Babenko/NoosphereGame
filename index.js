@@ -24,15 +24,16 @@ const types = {
 
 };
 
+
+//
 const server= http.createServer();
 
 server.on('request',(request,response)=> {
 
     const {method, url, headers} = request;
 
-
     console.log(`${method} ${url}`);
-    //
+
     if (method === 'POST') {
         let postData = '';
         request.on('data', data => {
@@ -46,6 +47,9 @@ server.on('request',(request,response)=> {
         processGet(request, response);
     }
 });
+
+
+
     //
     function processPost(request,response,postData) {
     let data = {};
@@ -63,12 +67,13 @@ server.on('request',(request,response)=> {
 
 
     function processGet(request,response) {
-        const {method, url, headers} = request;
+        const {method , url , headers} = request;
 
     }
     let filePath = url;
 
     if (filePath === '/'){
+
         filePath = '/index.html';
     }
 
@@ -78,7 +83,8 @@ server.on('request',(request,response)=> {
 
     response.setHeader("Content-Type",responseParams.contentType);
 
-     filePath = '/projects/NoosphereNodeJS/kub/'+ filePath;
+    filePath = '/projects/NoosphereNodeJS/kub/'+ filePath;
+
     let readStream = fs.createReadStream(filePath);
 
     readStream.on('error', err => {
@@ -88,13 +94,15 @@ server.on('request',(request,response)=> {
         response.end();
 });
 
+
     readStream.pipe(response);
+
 
 //response.write(JSON.stringify(res));
 //response.end();
-);
+
     server.listen(8080);
 
-    
+
 //почитать про сокеты
 //про метод пост в джиквери библиотеке
